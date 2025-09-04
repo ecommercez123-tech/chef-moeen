@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moeen | Sous Chef Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #111827; color: #f3f4f6; }
+    html { scroll-behavior: smooth; }
+    .bg-glow::before, .bg-glow::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(150px);
+      z-index: -1;
+    }
+    .bg-glow::before {
+      width: 400px; height: 400px;
+      top: -100px; left: -100px;
+      background: rgba(99,102,241,0.6);
+    }
+    .bg-glow::after {
+      width: 500px; height: 500px;
+      bottom: -150px; right: -100px;
+      background: rgba(236,72,153,0.5);
+    }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .lightbox-content {
+      max-width: 1000px;
+      width: 100%;
+      background: #1f2937;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .gallery-grid img, .gallery-grid video {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md shadow-lg z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-indigo-400">Moeen</h1>
+      <div class="space-x-6">
+        <a href="#about" class="hover:text-pink-400">About</a>
+        <a href="#works" class="hover:text-pink-400">Works</a>
+        <a href="#skills" class="hover:text-pink-400">Skills</a>
+        <a href="#certifications" class="hover:text-pink-400">Certifications</a>
+        <a href="#contact" class="hover:text-pink-400">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="h-screen flex flex-col justify-center items-center text-center px-6 relative bg-glow">
+    <h2 class="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-indigo-400 to-pink-400 text-transparent bg-clip-text fade-in">
+      Sous Chef | Creative Cook
+    </h2>
+    <p class="text-lg md:text-xl max-w-2xl fade-in">
+      Hi, I’m Md Leaul Hamd Moeen. <br>
+      A passionate Sous Chef with experience in preparing seasonal menus, Sunday Roasts, and stone-baked pizzas.  
+    </p>
+    <a href="#works" class="mt-6 inline-block bg-gradient-to-r from-pink-500 to-indigo-500 px-6 py-3 rounded-full font-semibold hover:opacity-90 transition fade-in">Explore My Work</a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="max-w-5xl mx-auto py-20 px-6 fade-in">
+    <h3 class="text-3xl font-bold mb-6 text-center text-indigo-300">About Me</h3>
+    <p class="text-lg leading-relaxed text-center">
+      Currently working as a <strong>Sous Chef at The Albert Arms, London</strong>.  
+      I assist the Head Chef with stock management, daily orders, and seasonal menu updates.  
+      Skilled in preparing traditional <strong>Sunday Roasts</strong> (beef, pork, lamb, chicken, Yorkshire puddings, roasted veg & potatoes) and <strong>stone-baked pizzas</strong> (Margherita, Pepperoni, Calabrese, Meat Feast).  
+      I take pride in maintaining a clean, organised kitchen and delivering quality dishes that satisfy customers.  
+    </p>
+  </section>
+
+  <!-- Works -->
+  <section id="works" class="py-20 px-6 bg-gray-900 fade-in">
+    <h3 class="text-3xl font-bold mb-12 text-center text-pink-400">My Works</h3>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Sunday Roast -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+        <img src="images/work1.jpg" alt="Sunday Roast" class="w-full h-56 object-cover">
+        <div class="p-4 text-center">
+          <h4 class="font-semibold text-lg text-indigo-300">Sunday Roast</h4>
+          <p class="text-gray-400 text-sm mb-4">Classic British roasts with Yorkshire pudding & sides.</p>
+          <button onclick="openLightbox('roastGallery')" class="bg-gradient-to-r from-pink-500 to-indigo-500 px-4 py-2 rounded-full font-semibold hover:opacity-90 transition">See More Work</button>
+        </div>
+      </div>
+      <!-- Pizza -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+        <img src="images/fish1.jpg" alt="Stone-Baked Pizza" class="w-full h-56 object-cover">
+        <div class="p-4 text-center">
+          <h4 class="font-semibold text-lg text-indigo-300">Fish and Chips</h4>
+          <p class="text-gray-400 text-sm mb-4">Beer Battered COD with Chunky Chips, Mushy Peas and Tartar Sauce</p>
+          <button onclick="openLightbox('pizzaGallery')" class="bg-gradient-to-r from-pink-500 to-indigo-500 px-4 py-2 rounded-full font-semibold hover:opacity-90 transition">See More Work</button>
+        </div>
+      </div>
+      <!-- Teamwork -->
+      <div class="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+        <img src="images/work3.jpg" alt="Kitchen Teamwork" class="w-full h-56 object-cover">
+        <div class="p-4 text-center">
+          <h4 class="font-semibold text-lg text-indigo-300">Quinoa & Roast Pepper Salad</h4>
+          <p class="text-gray-400 text-sm mb-4">Rocket, Chilli Tomatoes,Pomegranate and House Dressing</p>
+          <button onclick="openLightbox('teamGallery')" class="bg-gradient-to-r from-pink-500 to-indigo-500 px-4 py-2 rounded-full font-semibold hover:opacity-90 transition">See More Work</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20 px-6 max-w-5xl mx-auto fade-in">
+    <h3 class="text-3xl font-bold mb-8 text-center text-indigo-300">Skills</h3>
+    <div class="grid md:grid-cols-2 gap-6 text-center">
+      <div class="p-6 bg-gray-800 rounded-xl">Fast & Quick Learner</div>
+      <div class="p-6 bg-gray-800 rounded-xl">Strong Teamwork</div>
+      <div class="p-6 bg-gray-800 rounded-xl">Customer Satisfaction & Service Excellence</div>
+      <div class="p-6 bg-gray-800 rounded-xl">Efficient & Detail-Oriented</div>
+      <div class="p-6 bg-gray-800 rounded-xl">Risk Assessment in Food Safety</div>
+      <div class="p-6 bg-gray-800 rounded-xl">Ability to Multitask</div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="py-20 px-6 bg-gray-900 fade-in">
+    <h3 class="text-3xl font-bold mb-8 text-center text-pink-400">Certifications</h3>
+    <div class="max-w-3xl mx-auto text-center">
+      <h4 class="text-xl font-semibold text-indigo-300 mb-2">Level 2 Food Hygiene and Safety for Catering</h4>
+      <p class="text-gray-400 mb-6">Completed from <strong>High Speed Training</strong></p>
+      <div class="bg-gray-800 p-4 rounded-xl shadow-lg inline-block cursor-pointer">
+        <img src="images/certificate.jpg" alt="Food Hygiene Certificate" id="certificatePreview" class="rounded-lg max-h-96 mx-auto hover:opacity-90 transition">
+      </div>
+      <div class="mt-6">
+        <a href="certificate.pdf" class="bg-gradient-to-r from-pink-500 to-indigo-500 px-6 py-3 rounded-full font-semibold hover:opacity-90 transition">Download Certificate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6 max-w-4xl mx-auto text-center fade-in">
+    <h3 class="text-3xl font-bold mb-6 text-indigo-300">Get in Touch</h3>
+    <p class="mb-6">📍 15 Sandalwood Close, E1 4QL, London, UK <br> 📞 +44 (0) 7771 013116 <br> 📧 mdleaulhamd@gmail.com</p>
+    <div class="space-x-4">
+      <a href="mailto:mdleaulhamd@gmail.com" class="bg-gradient-to-r from-pink-500 to-indigo-500 px-6 py-3 rounded-full font-semibold hover:opacity-90 transition">Email Me</a>
+      <a href="resume.docx" class="bg-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-gray-700 transition">Download CV</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-950 text-gray-500 py-6 text-center">
+    © <span id="year"></span> Md Leaul Hamd Moeen. All Rights Reserved.
+  </footer>
+
+  <!-- Lightboxes -->
+  <div id="roastGallery" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox('roastGallery')">&times;</span>
+    <div class="lightbox-content">
+      <h2 class="text-2xl font-bold text-pink-400 mb-6 text-center">Sunday Roast Gallery</h2>
+      <div class="gallery-grid">
+        <video src="videos/roast1.mp4" controls></video>
+        <video src="videos/roast2.MOV" controls></video>
+        <img src="images/roast1.jpg" alt="Roast Dish 1">
+        <img src="images/roast2.jpg" alt="Roast Dish 2">
+        <img src="images/roast3.jpg" alt="Roast Dish 3">
+        <img src="images/roast4.jpg" alt="Roast Dish 4">
+        <img src="images/roast5.jpg" alt="Roast Dish 5">
+        <img src="images/roast6.jpg" alt="Roast Dish 6">
+        <img src="images/roast7.jpg" alt="Roast Dish 7">
+        <img src="images/roast8.jpg" alt="Roast Dish 8">
+      </div>
+    </div>
+  </div>
+
+  <div id="pizzaGallery" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox('pizzaGallery')">&times;</span>
+    <div class="lightbox-content">
+      <h2 class="text-2xl font-bold text-pink-400 mb-6 text-center">Fisn & Chips Gallery</h2>
+      <div class="gallery-grid">
+       
+        <img src="images/fish2.jpg" alt="Pizza 1">
+    
+      </div>
+    </div>
+  </div>
+
+  <div id="teamGallery" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox('teamGallery')">&times;</span>
+    <div class="lightbox-content">
+      <h2 class="text-2xl font-bold text-pink-400 mb-6 text-center">Work Gallery</h2>
+      <div class="gallery-grid">
+        <img src="images/work4.jpg" alt="Teamwork 1">
+        <img src="images/work5.jpg" alt="Teamwork 2">
+        <img src="images/work6.jpg" alt="Teamwork 1">
+    
+      </div>
+    </div>
+  </div>
+
+  <div id="certificateLightbox" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox('certificateLightbox')">&times;</span>
+    <div class="lightbox-content text-center">
+      <h2 class="text-2xl font-bold text-pink-400 mb-6">Certificate</h2>
+      <img src="images/certificate.jpg" alt="Certificate" class="mx-auto rounded-lg">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // reveal fade-in
+    const faders = document.querySelectorAll('.fade-in');
+    const options = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, options);
+    faders.forEach(el => observer.observe(el));
+
+    // Lightbox functions
+    function openLightbox(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+    function closeLightbox(id) {
+      document.getElementById(id).style.display = "none";
+    }
+    document.getElementById("certificatePreview").addEventListener("click", () => {
+      openLightbox("certificateLightbox");
+    });
+  </script>
+</body>
+</html>
